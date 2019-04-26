@@ -15,11 +15,15 @@ OUTPUT_PATH = args.output
 datatypes = ["train", "test", "dev"]
 
 for datatype in datatypes:
-    file_input_path = INPUT_PATH + "/2018-EI-reg-En-" + datatype
-    anger = pd.read_csv(file_input_path +"/2018-EI-reg-En-anger-"+datatype+".txt", sep="\t", encoding="utf-8")
-    fear = pd.read_csv(file_input_path +"/2018-EI-reg-En-fear-"+datatype+".txt", sep="\t", encoding="utf-8")
-    joy = pd.read_csv(file_input_path +"/2018-EI-reg-En-joy-"+datatype+".txt", sep="\t", encoding="utf-8")
-    sadness = pd.read_csv(file_input_path +"/2018-EI-reg-En-sadness-"+datatype+".txt", sep="\t", encoding="utf-8")
+    if datatype == "train":
+        file_prefix = ""
+    else:
+        file_prefix = "2018-"
+    
+    anger = pd.read_csv(INPUT_PATH +"/"+file_prefix+"EI-reg-En-anger-"+datatype+".txt", sep="\t", encoding="utf-8")
+    fear = pd.read_csv(INPUT_PATH +"/"+file_prefix+"EI-reg-En-fear-"+datatype+".txt", sep="\t", encoding="utf-8")
+    joy = pd.read_csv(INPUT_PATH +"/"+file_prefix+"EI-reg-En-joy-"+datatype+".txt", sep="\t", encoding="utf-8")
+    sadness = pd.read_csv(INPUT_PATH +"/"+file_prefix+"EI-reg-En-sadness-"+datatype+".txt", sep="\t", encoding="utf-8")
     
     semeval2018task1 = anger.append(fear).append(joy).append(sadness).reset_index(drop=True)
     
