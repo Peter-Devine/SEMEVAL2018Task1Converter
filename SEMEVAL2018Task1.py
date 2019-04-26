@@ -14,6 +14,10 @@ OUTPUT_PATH = args.output
 
 datatypes = ["train", "test", "dev"]
 
+# Make the output directory if it does not currently exist
+if not os.path.exists(OUTPUT_PATH):
+    os.mkdir(OUTPUT_PATH)
+
 for datatype in datatypes:
     if datatype == "train":
         file_prefix = ""
